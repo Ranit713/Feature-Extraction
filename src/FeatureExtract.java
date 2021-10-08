@@ -24,7 +24,7 @@ public class FeatureExtract {
     }
 
     public void runQueries() {
-        query.fanIn(5);
+        query.fanIn(2);
     }
 
     public static void main(String[] args) {

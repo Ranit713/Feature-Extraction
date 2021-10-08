@@ -1,20 +1,24 @@
 package graphs;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 import java.util.Map.Entry;
 
 import components.Net;
 import components.SubModules;
 
-public class Graph {
+public class Graph implements ModuleList, NetList {
 
+    Map<String, Net> nets;
+    Map<Net, Net> assignments;
+    Map<String, SubModules> modules;
     private static Graph singleInstance = null;
-    private NetList netList;
-    private ModuleList moduleList;
 
     private Graph() {
-        netList = NetList.getInstance();
-        moduleList = ModuleList.getInstance();
+        nets = new HashMap<>();
+        assignments = new HashMap<>();
+        modules = new HashMap<>();
     }
 
     public static Graph getInstance() {
@@ -27,34 +31,45 @@ public class Graph {
      * Net list functionalities listed below
      */
     public void add(Net net) {
-        netList.add(net);
+        String name = net.getName();
+        nets.putIfAbsent(name, net);
     }
 
-    public Net getNet(String netName) {
-        return netList.get(netName);
+    public Net getNet(String name) {
+        if (!nets.containsKey(name)) {
+            Net net = new Net(name);
+            add(net);
+        }
+        return nets.get(name);
     }
 
     public Set<Entry<String, Net>> getAllNets() {
-        return netList.getAllNets();
+        return nets.entrySet();
     }
 
     public void showNetlist() {
-        netList.print();
+        for (Map.Entry<String, Net> net : nets.entrySet()) {
+            String netName = net.getKey();
+            System.out.println(netName);
+        }
     }
 
     /*
      * Module list functionalities listed below.
      */
     public void add(SubModules module) {
-        moduleList.add(module);
+        String name = module.getName();
+        modules.putIfAbsent(name, module);
     }
 
-    public SubModules getModule(String moduleName) {
-        return moduleList.get(moduleName);
+    public SubModules getModule(String name) {
+        return modules.get(name);
     }
 
     /* Assigment functionality. */
     public void assign(String name1, String name2) {
-        netList.assign(name1, name2);
+        Net net1 = nets.get(name1);
+        Net net2 = nets.get(name2);
+        assignments.put(net1, net2);
     }
 }
