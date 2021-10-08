@@ -3,16 +3,15 @@ package graphs;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
-import java.util.Map.Entry;
 
 import components.Net;
 import components.SubModules;
 
 public class Graph implements ModuleList, NetList {
 
-    Map<String, Net> nets;
-    Map<Net, Net> assignments;
-    Map<String, SubModules> modules;
+    Map<String, Net> nets; // list of nets
+    Map<Net, Net> assignments; // list of assignments
+    Map<String, SubModules> modules; // list of sub-modules
     private static Graph singleInstance = null;
 
     private Graph() {
@@ -43,8 +42,8 @@ public class Graph implements ModuleList, NetList {
         return nets.get(name);
     }
 
-    public Set<Entry<String, Net>> getAllNets() {
-        return nets.entrySet();
+    public Set<String> getAllNets() {
+        return nets.keySet();
     }
 
     public void showNetlist() {

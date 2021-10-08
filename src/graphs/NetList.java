@@ -1,7 +1,6 @@
 package graphs;
 
 import java.util.Set;
-import java.util.Map.Entry;
 
 import components.Net;
 
@@ -16,7 +15,7 @@ public interface NetList {
      */
     public Net getNet(String name);
 
-    public Set<Entry<String, Net>> getAllNets();
+    public Set<String> getAllNets();
 
     /* Prints all nets' name */
     public void showNetlist();
