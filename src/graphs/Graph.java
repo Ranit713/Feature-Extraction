@@ -1,8 +1,9 @@
 package graphs;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import components.Net;
 import components.SubModules;
@@ -30,8 +31,7 @@ public class Graph implements ModuleList, NetList {
      * Net list functionalities listed below
      */
     public void add(Net net) {
-        String name = net.getName();
-        nets.putIfAbsent(name, net);
+        nets.putIfAbsent(net.getName(), net);
     }
 
     public Net getNet(String name) {
@@ -42,8 +42,12 @@ public class Graph implements ModuleList, NetList {
         return nets.get(name);
     }
 
-    public Set<String> getAllNets() {
-        return nets.keySet();
+    public List<Net> getAllNets() {
+        List<Net> netlist = new ArrayList<>();
+        for (Net net : nets.values()) {
+            netlist.add(net);
+        }
+        return netlist;
     }
 
     public void showNetlist() {

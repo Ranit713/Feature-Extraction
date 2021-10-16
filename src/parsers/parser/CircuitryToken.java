@@ -12,7 +12,7 @@ public class CircuitryToken {
         graph = Graph.getInstance();
     }
 
-    /*
+    /**
      * Parse a circuitry token.
      */
     public void parse(String token) {
@@ -22,7 +22,7 @@ public class CircuitryToken {
             subModuleToken(token);
     }
 
-    /*
+    /**
      * Parses a token with assignment defintion.
      */
     private void assignToken(String token) {
@@ -30,15 +30,16 @@ public class CircuitryToken {
         assign(assignment);
     }
 
-    /*
+    /**
      * Actual assignment done here.
      */
     private void assign(String assignment) {
         String[] netNames = assignment.split("\\s*=\\s*");
-        graph.assign(netNames[0], netNames[1]);
+        Net net = graph.getNet(netNames[1]);
+        net.assignTo(netNames[0]);
     }
 
-    /*
+    /**
      * Splits circuit definition into module components.
      */
     private void subModuleToken(String circuitDefinition) {
@@ -48,7 +49,7 @@ public class CircuitryToken {
         setModuleInfo(moduleName, moduleDef.substring(1, moduleDef.length() - 1).trim());
     }
 
-    /*
+    /**
      * Extract inputs and outputs of module from its definition and stores in graph
      */
     private void setModuleInfo(String moduleName, String moduleDef) {
@@ -69,15 +70,15 @@ public class CircuitryToken {
             // Name of net connected to port previously retrieved.
             String netName = inout[i].substring(inout[i].indexOf("(") + 1, inout[i].indexOf(")")).trim();
 
-            // for non-empty names only
-            if (!netName.isEmpty()) { 
+            // For non-empty names only.
+            if (!netName.isEmpty()) {
                 Net net = graph.getNet(netName);
                 if (port.equals("Q") || port.equals("QN")) { // output ports
                     module.addOutput(netName);
                     net.setInput(moduleName);
                 } else { // input ports
                     module.addInput(netName);
-                    net.addOutputs(moduleName);
+                    net.addOutputs(module);
                 }
             }
         }

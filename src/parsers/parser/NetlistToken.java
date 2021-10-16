@@ -13,7 +13,7 @@ public class NetlistToken {
         graph = Graph.getInstance();
     }
 
-    /* Parses tokens with nets' definitions. */
+    /** Parses tokens with nets' definitions. */
     public boolean parse(String token) {
         if (token.startsWith("input")) {
             String inputs = token.split("input\\s*")[1];
@@ -30,7 +30,7 @@ public class NetlistToken {
         return true;
     }
 
-    /* Stores a net as a graph edge. */
+    /** Stores a net as a graph edge. */
     private void netlistToken(String netlists, char type) {
         try (Scanner sc = new Scanner(netlists).useDelimiter("\\s*,\\s*")) {
             while (sc.hasNext()) {
