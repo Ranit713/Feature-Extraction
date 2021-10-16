@@ -1,18 +1,15 @@
 package queries;
 
-import java.util.Map;
-
 import components.Net;
 
 public class Query {
 
     LogicFanIn logicFanIn;
     PrimaryInput primaryInputObj;
-    Map<String, Integer> minPrimaryInput;
 
     public Query() {
         logicFanIn = new LogicFanIn();
-        // minPrimaryInput = primaryInputObj.primaryInput();
+        primaryInputObj = new PrimaryInput();
     }
 
     public int fanIn(String netName, int level) {
@@ -20,7 +17,6 @@ public class Query {
     }
 
     public int primaryInput(Net net) {
-        primaryInputObj = new PrimaryInput();
-        return primaryInputObj.dfs(net, 0);
+        return primaryInputObj.minimumPI(net);
     }
 }
