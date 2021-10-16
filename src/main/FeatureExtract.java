@@ -54,7 +54,7 @@ public class FeatureExtract {
 
     public static void main(String[] args) {
         FeatureExtract featureExtract = new FeatureExtract();
-        String verilogFile = "s38584-T100.v";
+        String verilogFile = "s38417-T100.v";
         File file = featureExtract.openFile(verilogFile);
         featureExtract.createGraph(file);
         System.out.println("Graph created.");

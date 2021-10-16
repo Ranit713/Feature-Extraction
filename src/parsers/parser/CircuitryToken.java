@@ -1,7 +1,7 @@
 package parsers.parser;
 
 import components.Net;
-import components.SubModules;
+import components.SubModule;
 import graphs.Graph;
 
 public class CircuitryToken {
@@ -55,7 +55,7 @@ public class CircuitryToken {
     private void setModuleInfo(String moduleName, String moduleDef) {
 
         // object for the current module
-        SubModules module = new SubModules(moduleName);
+        SubModule module = new SubModule(moduleName);
 
         String[] inout = moduleDef.split("\\s*,\\s*"); // split module defintion into further tokens
 
@@ -75,7 +75,7 @@ public class CircuitryToken {
                 Net net = graph.getNet(netName);
                 if (port.equals("Q") || port.equals("QN")) { // output ports
                     module.addOutput(netName);
-                    net.setInput(moduleName);
+                    net.setInput(module);
                 } else { // input ports
                     module.addInput(netName);
                     net.addOutputs(module);

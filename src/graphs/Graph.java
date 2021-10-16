@@ -6,13 +6,13 @@ import java.util.List;
 import java.util.Map;
 
 import components.Net;
-import components.SubModules;
+import components.SubModule;
 
 public class Graph implements ModuleList, NetList {
 
     Map<String, Net> nets; // list of nets
     Map<Net, Net> assignments; // list of assignments
-    Map<String, SubModules> modules; // list of sub-modules
+    Map<String, SubModule> modules; // list of sub-modules
     private static Graph singleInstance = null;
 
     private Graph() {
@@ -60,12 +60,12 @@ public class Graph implements ModuleList, NetList {
     /*
      * Module list functionalities listed below.
      */
-    public void add(SubModules module) {
+    public void add(SubModule module) {
         String name = module.getName();
         modules.putIfAbsent(name, module);
     }
 
-    public SubModules getModule(String name) {
+    public SubModule getModule(String name) {
         return modules.get(name);
     }
 

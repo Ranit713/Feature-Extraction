@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Set;
 
 import components.Net;
-import components.SubModules;
+import components.SubModule;
 import graphs.Graph;
 
 public class PrimaryInput {
@@ -22,9 +22,8 @@ public class PrimaryInput {
 
     int dfs(Net net, int pi) {
         visited.add(net.getName());
-        String moduleName = net.getInput();
         int min = Integer.MAX_VALUE;
-        SubModules inputModule = graph.getModule(moduleName); // sub-module object at input side of net
+        SubModule inputModule = net.getInput(); // sub-module object at input side of net
         if (net.isInput() || inputModule == null) // if input of a wire is null, it means it is connected to a primary
                                                   // input
             return pi;

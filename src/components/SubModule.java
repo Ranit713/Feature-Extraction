@@ -3,13 +3,13 @@ package components;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SubModules {
+public class SubModule {
 
     private String moduleName;
     private List<String> inputs;
     private List<String> outputs;
 
-    public SubModules(String name) {
+    public SubModule(String name) {
         moduleName = name;
         inputs = new ArrayList<>();
         outputs = new ArrayList<>();

@@ -6,8 +6,8 @@ import java.util.List;
 public class Net {
 
     private String netName;
-    private String inputModule;
-    private List<SubModules> outputs;
+    private SubModule inputModule;
+    private List<SubModule> outputs;
     private List<String> assignedTo;
     private char netType;
 
@@ -20,12 +20,12 @@ public class Net {
     }
 
     /** Set input of the net. */
-    public void setInput(String moduleName) {
+    public void setInput(SubModule moduleName) {
         inputModule = moduleName;
     }
 
-    /** Add names of output modules from the net. */
-    public void addOutputs(SubModules moduleName) {
+    /** Add modules on the output side if the net. */
+    public void addOutputs(SubModule moduleName) {
         outputs.add(moduleName);
     }
 
@@ -40,12 +40,12 @@ public class Net {
     }
 
     /** Returns name of the module current net is coming from. */
-    public String getInput() {
+    public SubModule getInput() {
         return inputModule;
     }
 
     /** Returns list of the modules names current net is going into. */
-    public List<SubModules> getOutputs() {
+    public List<SubModule> getOutputs() {
         return outputs;
     }
 
