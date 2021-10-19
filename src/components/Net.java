@@ -34,6 +34,10 @@ public class Net {
         netType = type;
     }
 
+    public char getType() {
+        return netType;
+    }
+
     /** Returns name of the net. */
     public String getName() {
         return netName;

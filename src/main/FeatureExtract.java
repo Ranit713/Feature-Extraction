@@ -21,7 +21,7 @@ public class FeatureExtract {
 
     /** Opens input file. */
     public File openFile(String fileName) {
-        return new File("..\\resources\\" + fileName);
+        return new File("resources\\" + fileName);
     }
 
     /** Creates the circuit graph. */
@@ -35,7 +35,7 @@ public class FeatureExtract {
     public void runQueries(String verilogFile) {
         String vfileName = verilogFile.substring(0, verilogFile.indexOf(".")) + ".csv"; // csv file using the original
                                                                                         // file name
-        try (FileWriter csvFileWriter = new FileWriter("..\\features\\" + vfileName)) {
+        try (FileWriter csvFileWriter = new FileWriter("features\\" + vfileName)) {
             csvFileWriter.write("Netlist,LOFi1,LOFi2,PI\n");
 
             // Queries run below.

@@ -33,8 +33,8 @@ iXMIT_N28,2,5,10
 iXMIT_N29,2,5,9
 iXMIT_N26,2,6,13
 iXMIT_N27,2,5,8
-iXMIT_N24,2,5,15
 xmit_dataH[0],0,0,0
+iXMIT_N24,2,5,15
 iXMIT_N25,2,5,15
 iXMIT_N23,2,6,15
 iXMIT_bitCell_cntrH_0_,3,3,4
@@ -45,10 +45,9 @@ rec_dataH_rec[5],3,3,15
 n211,2,5,2
 n217,1,4,21
 iXMIT_next_state_0_,2,7,8
-[7:0] rec_dataH,0,0,0
 iRECEIVER_recd_bitCntrH_2_,3,3,6
-1'b0,0,0,0
 rec_dataH_rec[4],3,3,19
+1'b0,0,0,0
 iXMIT_bitCell_cntrH_1_,3,3,8
 1'b1,0,0,0
 n202,3,8,2
@@ -60,7 +59,6 @@ iXMIT_N46,2,5,18
 iXMIT_N44,2,6,18
 iXMIT_N45,2,5,6
 iRECEIVER_recd_bitCntrH_3_,3,3,17
-[7:0] rec_dataH_rec,0,0,0
 iXMIT_bitCell_cntrH_2_,3,3,5
 iRECEIVER_next_state_0_,4,13,26
 rec_dataH_rec[7],3,3,7
@@ -82,10 +80,10 @@ n223,1,4,18
 n106,1,4,24
 n109,1,4,11
 xmit_dataH[4],0,0,0
+rec_dataH[6],3,3,15
 iRECEIVER_bitCell_cntrH_2_,3,3,5
 n260,3,3,4
 n10,4,10,9
-rec_dataH[6],3,3,15
 n261,3,3,4
 n140,3,6,13
 n12,4,10,10
@@ -115,7 +113,6 @@ n259,3,3,4
 n138,3,6,22
 iXMIT_bitCountH_0_,3,3,17
 n139,3,4,26
-[7:0] xmit_dataH,0,0,0
 xmit_dataH[3],0,0,0
 iXMIT_state_2_,3,3,10
 rec_dataH[5],3,3,18
@@ -185,19 +182,19 @@ n156,3,4,6
 n157,3,6,19
 iXMIT_bitCountH_2_,3,3,17
 iRECEIVER_N19,2,5,13
-iRECEIVER_N18,2,5,20
 xmit_dataH[5],0,0,0
+iRECEIVER_N18,2,5,20
 iRECEIVER_N17,2,6,16
 n41,4,6,1
 iRECEIVER_bitCell_cntrH_3_,3,3,12
 n43,2,1,1
 n271,2,5,19
 n150,3,6,14
+rec_dataH[7],3,3,12
 iRECEIVER_rec_readyInH,3,9,18
 n151,1,4,13
 n42,3,8,5
 n272,2,6,7
-rec_dataH[7],3,3,12
 n45,4,9,14
 n44,3,7,11
 n270,2,6,18
@@ -223,8 +220,8 @@ n1,1,3,6
 n2,3,9,6
 n3,3,9,5
 rec_dataH_temp[7],3,6,9
-n50,4,10,17
 rec_dataH[2],3,3,12
+n50,4,10,17
 n7,4,10,14
 n180,3,4,9
 n8,2,6,18
@@ -244,7 +241,6 @@ iXMIT_xmit_ShiftRegH_3_,3,3,4
 n57,2,6,15
 n177,3,4,4
 n174,3,5,3
-[7:0] rec_dataH_temp,0,0,0
 n175,3,4,16
 n178,3,4,4
 n179,3,5,4
@@ -286,9 +282,9 @@ rec_dataH_temp[5],3,6,17
 iXMIT_xmit_doneInH,2,6,12
 n72,1,2,12
 n71,3,8,11
+rec_dataH[4],3,3,16
 n74,1,2,16
 iXMIT_state_1_,2,5,3
-rec_dataH[4],3,3,16
 n73,4,6,7
 n75,3,9,6
 iRECEIVER_bitCell_cntrH_0_,3,3,2
@@ -302,8 +298,8 @@ n81,2,6,14
 n80,2,6,22
 n190,3,8,2
 n83,2,6,26
-n82,3,9,11
 rec_dataH[3],3,3,14
+n82,3,9,11
 n85,4,12,6
 iXMIT_state_0_,3,3,10
 n84,3,10,11

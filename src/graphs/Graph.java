@@ -34,8 +34,10 @@ public class Graph implements ModuleList, NetList {
         nets.putIfAbsent(net.getName(), net);
     }
 
+    /** Retrieve net object using net name. */
     public Net getNet(String name) {
         if (!nets.containsKey(name)) {
+            System.out.println(name);
             Net net = new Net(name);
             add(net);
         }
