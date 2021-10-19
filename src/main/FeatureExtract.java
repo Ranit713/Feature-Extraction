@@ -21,20 +21,21 @@ public class FeatureExtract {
 
     /** Opens input file. */
     public File openFile(String fileName) {
-        return new File("resources\\" + fileName);
+        return new File("..\\resources\\" + fileName);
     }
 
     /** Creates the circuit graph. */
     public void createGraph(File file) {
         FileParser fileParser = new FileParser();
         fileParser.parse(file);
+        System.out.println("Graph created.");
     }
 
     /** Runs queries and stores feature values in a csv file. */
     public void runQueries(String verilogFile) {
         String vfileName = verilogFile.substring(0, verilogFile.indexOf(".")) + ".csv"; // csv file using the original
                                                                                         // file name
-        try (FileWriter csvFileWriter = new FileWriter("features\\" + vfileName)) {
+        try (FileWriter csvFileWriter = new FileWriter("..\\features\\" + vfileName)) {
             csvFileWriter.write("Netlist,LOFi1,LOFi2,PI\n");
 
             // Queries run below.
@@ -54,10 +55,9 @@ public class FeatureExtract {
 
     public static void main(String[] args) {
         FeatureExtract featureExtract = new FeatureExtract();
-        String verilogFile = "s38417-T100.v";
+        String verilogFile = "RS232-T1100.v";
         File file = featureExtract.openFile(verilogFile);
         featureExtract.createGraph(file);
-        System.out.println("Graph created.");
         featureExtract.runQueries(verilogFile);
     }
 }
