@@ -1,14 +1,2 @@
 RegularExpressions.java
-src/components/Net.class
-src/components/SubModule.class
-src/graphs/Graph.class
-src/graphs/ModuleList.class
-src/graphs/NetList.class
-src/main/FeatureExtract.class
-src/parsers/parser/CircuitryToken.class
-src/parsers/parser/NetlistToken.class
-src/parsers/tokenizer/FileParser.class
-src/parsers/tokenizer/Tokenizer.class
-src/queries/LogicFanIn.class
-src/queries/PrimaryInput.class
-src/queries/Query.class
+*.class
