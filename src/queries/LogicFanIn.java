@@ -14,8 +14,7 @@ class LogicFanIn {
         graph = Graph.getInstance();
     }
 
-    int fanInUptoLevel(String netName, int n) {
-        Net net = graph.getNet(netName); // current net object
+    int fanInUptoLevel(Net net, int n) {
         SubModule module = net.getInput(); // sub-module object at input side of net
         if (module == null)
             return 0;
@@ -24,7 +23,7 @@ class LogicFanIn {
             return module.fanIn();
         List<String> inputNets = module.getInputs();
         for (String inputNet : inputNets)
-            fanIn += fanInUptoLevel(inputNet, n - 1);
+            fanIn += fanInUptoLevel(graph.getNet(inputNet), n - 1);
         return fanIn;
     }
 }

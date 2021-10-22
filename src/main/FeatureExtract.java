@@ -33,19 +33,26 @@ public class FeatureExtract {
 
     /** Runs queries and stores feature values in a csv file. */
     public void runQueries(String verilogFile) {
-        String vfileName = verilogFile.substring(0, verilogFile.indexOf(".")) + ".csv"; // csv file using the original
+        String vfileName = verilogFile.substring(0, verilogFile.indexOf(".")) + "_2.csv"; // csv file using the original
                                                                                         // file name
         try (FileWriter csvFileWriter = new FileWriter("../features/" + vfileName)) {
-            csvFileWriter.write("Netlist,LOFi1,LOFi2,PI\n");
+            csvFileWriter.write("Netlist,LOFi1,LOFi2,LOFo1,LOFo2,PI\n");
 
             // Queries run below.
             for (Net net : graph.getAllNets()) {
+
                 String netName = net.getName();
-                int lofi1 = query.fanIn(netName, 1);
-                int logfi2 = query.fanIn(netName, 2);
+                int lofi1 = query.fanIn(net, 1);
+                int logfi2 = query.fanIn(net, 2);
+                int logfo1 = query.fanOut(net, 1);
+                int logfo2 = query.fanOut(net, 2);
                 int pi = query.primaryInput(net);
-                // System.out.println(netName + "," + lofi1 + "," + logfi2 + "," + pi +"\n");
-                csvFileWriter.write(netName + "," + lofi1 + "," + logfi2 + "," + pi + "\n");
+
+                // System.out.println(netName + "," + lofi1 + "," + logfi2 + "," + logfo1 + ","
+                // + pi + "\n");
+
+                csvFileWriter
+                        .write(netName + "," + lofi1 + "," + logfi2 + "," + logfo1 + "," + logfo2 + "," + pi + "\n");
             }
             System.out.println("Features added to file succesfully!");
         } catch (IOException e) {
@@ -55,7 +62,7 @@ public class FeatureExtract {
 
     public static void main(String[] args) {
         FeatureExtract featureExtract = new FeatureExtract();
-        String verilogFile = "RS232-T1100.v";
+        String verilogFile = "s38584-T100.v";
         File file = featureExtract.openFile(verilogFile);
         featureExtract.createGraph(file);
         featureExtract.runQueries(verilogFile);

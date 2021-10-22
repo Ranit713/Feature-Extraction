@@ -1,4 +1,4 @@
 cd src
-rm -r */**/*.class
+find . -name "*.class" -type f -delete
 javac ./main/FeatureExtract.java
 java main.FeatureExtract
