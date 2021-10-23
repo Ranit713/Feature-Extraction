@@ -1,7 +1,5 @@
 package queries;
 
-import java.util.List;
-
 import components.Net;
 import components.SubModule;
 import graphs.Graph;
