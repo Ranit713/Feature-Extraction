@@ -3,11 +3,8 @@ package main;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
 
 import components.Net;
-import components.SubModule;
 import graphs.Graph;
 import parsers.tokenizer.FileParser;
 import queries.Query;
