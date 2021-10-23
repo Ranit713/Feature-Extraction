@@ -36,8 +36,8 @@ public class FeatureExtract {
         String vfileName = verilogFile.substring(0, verilogFile.indexOf(".")) + ".csv"; // csv file using the original
                                                                                         // file name
         try (FileWriter csvFileWriter = new FileWriter("../features/" + vfileName)) {
-            csvFileWriter.write("Netlist,LOFi1,LOFi2,LOFo1,LOFo2,PI\n");
-            
+            csvFileWriter.write("Netlist,LOFi1,LOFi2,LOFo1,LOFo2,PI,inFF1,inFF2\n");
+
             // Queries run below.
             for (Net net : graph.getAllNets()) {
 
@@ -47,12 +47,14 @@ public class FeatureExtract {
                 int logfo1 = query.fanOut(net, 1);
                 int logfo2 = query.fanOut(net, 2);
                 int pi = query.primaryInput(net);
+                int inFF1 = query.inFlipFlop(net, 1);
+                int inFF2 = query.inFlipFlop(net, 2);
 
                 // System.out.println(netName + "," + lofi1 + "," + logfi2 + "," + logfo1 + ","
                 // + pi + "\n");
 
-                csvFileWriter
-                        .write(netName + "," + lofi1 + "," + logfi2 + "," + logfo1 + "," + logfo2 + "," + pi + "\n");
+                csvFileWriter.write(netName + "," + lofi1 + "," + logfi2 + "," + logfo1 + "," + logfo2 + "," + pi + ","
+                        + inFF1 + "," + inFF2 + "\n");
             }
             System.out.println("Features added to file succesfully!");
         } catch (IOException e) {
@@ -62,7 +64,7 @@ public class FeatureExtract {
 
     public static void main(String[] args) {
         FeatureExtract featureExtract = new FeatureExtract();
-        String verilogFile = "s38584-T100.v";
+        String verilogFile = "wb_conmax-T100.v";
         File file = featureExtract.openFile(verilogFile);
         featureExtract.createGraph(file);
         featureExtract.runQueries(verilogFile);

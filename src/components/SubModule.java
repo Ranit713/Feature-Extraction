@@ -32,9 +32,9 @@ public class SubModule {
         return name;
     }
 
-    /** Returns type of current module. */
-    public String getType() {
-        return type;
+    /** Returns true if module is a Flip-Flop. */
+    public boolean isFlipFlop() {
+        return type.equals("FF");
     }
 
     /** Returns names of input nets to the module. */
