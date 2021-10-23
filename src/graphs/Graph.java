@@ -71,6 +71,13 @@ public class Graph implements ModuleList, NetList {
         return modules.get(name);
     }
 
+    public List<SubModule> getAllModules() {
+        List<SubModule> modulelist = new ArrayList<>();
+        for (SubModule module : modules.values())
+            modulelist.add(module);
+        return modulelist;
+    }
+
     /* Assigment functionality. */
     public void assign(String name1, String name2) {
         Net net1 = nets.get(name1);

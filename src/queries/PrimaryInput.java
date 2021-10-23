@@ -29,9 +29,9 @@ public class PrimaryInput {
         if (net.isInput() || inputModule == null) // if input of a wire is null, it means it is connected to a primary
                                                   // input
             return pi;
-        for (String inputNet : inputModule.getInputs())
-            if (!visited.contains(inputNet))
-                min = Math.min(dfs(graph.getNet(inputNet), pi + 1), min);
+        for (Net inputNet : inputModule.getInputs())
+            if (!visited.contains(inputNet.getName()))
+                min = Math.min(dfs(inputNet, pi + 1), min);
         return min;
     }
 

@@ -3,8 +3,11 @@ package main;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 
 import components.Net;
+import components.SubModule;
 import graphs.Graph;
 import parsers.tokenizer.FileParser;
 import queries.Query;
@@ -33,11 +36,11 @@ public class FeatureExtract {
 
     /** Runs queries and stores feature values in a csv file. */
     public void runQueries(String verilogFile) {
-        String vfileName = verilogFile.substring(0, verilogFile.indexOf(".")) + "_2.csv"; // csv file using the original
+        String vfileName = verilogFile.substring(0, verilogFile.indexOf(".")) + ".csv"; // csv file using the original
                                                                                         // file name
         try (FileWriter csvFileWriter = new FileWriter("../features/" + vfileName)) {
             csvFileWriter.write("Netlist,LOFi1,LOFi2,LOFo1,LOFo2,PI\n");
-
+            
             // Queries run below.
             for (Net net : graph.getAllNets()) {
 

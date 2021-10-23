@@ -5,38 +5,45 @@ import java.util.List;
 
 public class SubModule {
 
-    private String moduleName;
-    private List<String> inputs;
-    private List<String> outputs;
+    private String name;
+    private String type;
+    private List<Net> inputs;
+    private List<Net> outputs;
 
-    public SubModule(String name) {
-        moduleName = name;
+    public SubModule(String moduleType, String moduleName) {
+        name = moduleName;
+        type = moduleType;
         inputs = new ArrayList<>();
         outputs = new ArrayList<>();
     }
 
-    /** Adds names of input nets to the module. */
-    public void addInput(String netName) {
-        inputs.add(netName);
+    /** Adds input nets to the module. */
+    public void addInput(Net net) {
+        inputs.add(net);
     }
 
-    /** Adds names of output nets from the module. */
-    public void addOutput(String name) {
-        outputs.add(name);
+    /** Adds output nets from the module. */
+    public void addOutput(Net net) {
+        outputs.add(net);
     }
 
     /** Returns name of current module. */
     public String getName() {
-        return moduleName;
+        return name;
+    }
+
+    /** Returns type of current module. */
+    public String getType() {
+        return type;
     }
 
     /** Returns names of input nets to the module. */
-    public List<String> getInputs() {
+    public List<Net> getInputs() {
         return inputs;
     }
 
     /** Returns names of output nets from the module. */
-    public List<String> getOutputs() {
+    public List<Net> getOutputs() {
         return outputs;
     }
 

@@ -21,9 +21,8 @@ class LogicFanIn {
         int fanIn = 0;
         if (n == 1)
             return module.fanIn();
-        List<String> inputNets = module.getInputs();
-        for (String inputNet : inputNets)
-            fanIn += fanInUptoLevel(graph.getNet(inputNet), n - 1);
+        for (Net inputNet : module.getInputs())
+            fanIn += fanInUptoLevel(inputNet, n - 1);
         return fanIn;
     }
 }

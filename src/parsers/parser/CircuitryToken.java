@@ -44,18 +44,24 @@ public class CircuitryToken {
      */
     private void subModuleToken(String circuitDefinition) {
         String[] circuitDefinitionTokens = circuitDefinition.split("\\s+", 3);
+        String moduleType = circuitDefinitionTokens[0];
         String moduleName = circuitDefinitionTokens[1];
         String moduleDef = circuitDefinitionTokens[2];
-        setModuleInfo(moduleName, moduleDef.substring(1, moduleDef.length() - 1).trim());
+        setModuleInfo(moduleType, moduleName, moduleDef.substring(1, moduleDef.length() - 1).trim());
     }
 
     /**
      * Extract inputs and outputs of module from its definition and stores in graph
      */
-    private void setModuleInfo(String moduleName, String moduleDef) {
+    private void setModuleInfo(String moduleType, String moduleName, String moduleDef) {
 
+        // regex to get anything before first integer in the string
+        moduleType = moduleType.split("[0-9]")[0];
+        if (moduleType.startsWith("SDFF") || moduleType.startsWith("DFF") || moduleType.startsWith("ISOL"))
+            moduleType = "FF";
+        
         // object for the current module
-        SubModule module = new SubModule(moduleName);
+        SubModule module = new SubModule(moduleType, moduleName);
 
         String[] inout = moduleDef.split("\\s*,\\s*"); // split module defintion into further tokens
 
@@ -74,10 +80,10 @@ public class CircuitryToken {
             if (!netName.isEmpty()) {
                 Net net = graph.getNet(netName);
                 if (port.equals("Q") || port.equals("QN")) { // output ports
-                    module.addOutput(netName);
+                    module.addOutput(graph.getNet(netName));
                     net.setInput(module);
                 } else { // input ports
-                    module.addInput(netName);
+                    module.addInput(graph.getNet(netName));
                     net.addOutputs(module);
                 }
             }

@@ -20,11 +20,9 @@ public class LogicFanOut {
         for (SubModule module : modules) {
             if (n == 1)
                 fanOut += module.fanOut();
-            else {
-                List<String> outputsNets = module.getOutputs();
-                for (String outputNet : outputsNets)
-                    fanOut += fanOutUptoLevel(graph.getNet(outputNet), n - 1);
-            }
+            else
+                for (Net outputNet : module.getOutputs())
+                    fanOut += fanOutUptoLevel(outputNet, n - 1);
         }
         return fanOut;
     }
