@@ -37,6 +37,11 @@ public class SubModule {
         return type.equals("FF");
     }
 
+    /** Returns true if module is a Flip-Flop. */
+    public boolean isMultiplexer() {
+        return type.equals("MUX");
+    }
+
     /** Returns names of input nets to the module. */
     public List<Net> getInputs() {
         return inputs;

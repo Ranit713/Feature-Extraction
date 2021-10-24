@@ -8,12 +8,14 @@ public class Query {
     LogicFanOut logicFanOut;
     PrimaryInput primaryInputObj;
     FlipFlops ff;
+    Multiplexers mux;
 
     public Query() {
         logicFanIn = new LogicFanIn();
         logicFanOut = new LogicFanOut();
         primaryInputObj = new PrimaryInput();
         ff = new FlipFlops();
+        mux = new Multiplexers();
     }
 
     public int fanIn(Net net, int level) {
@@ -30,5 +32,9 @@ public class Query {
 
     public int inFlipFlop(Net net, int level) {
         return ff.inFlipFlops(net, level);
+    }
+
+    public int inMultiplexer(Net net, int level) {
+        return mux.inMUX(net, level);
     }
 }
