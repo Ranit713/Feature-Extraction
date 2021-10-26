@@ -36,7 +36,7 @@ public class FeatureExtract {
         String vfileName = verilogFile.substring(0, verilogFile.indexOf(".")) + ".csv"; // csv file using the original
                                                                                         // file name
         try (FileWriter csvFileWriter = new FileWriter("../features/" + vfileName)) {
-            csvFileWriter.write("Netlist,LOFi1,LOFi2,LOFo1,LOFo2,PI,inFF1,inFF2,inMUX1,inMUX2,inLoop1\n");
+            csvFileWriter.write("Netlist,LOFi1,LOFi2,LOFo1,LOFo2,PI,inFF1,inFF2,inMUX1,inMUX2,inLoop2\n");
 
             // Queries run below.
             for (Net net : graph.getAllNets()) {
