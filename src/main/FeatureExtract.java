@@ -51,13 +51,13 @@ public class FeatureExtract {
                 int inFF2 = query.inFlipFlop(net, 2);
                 int inMUX1 = query.inMultiplexer(net, 1);
                 int inMUX2 = query.inMultiplexer(net, 2);
-                int inloop1 = query.inloopUptoLevel(net, 1);
+                int inloop2 = query.inloopUptoLevel(net, 2);
 
                 // System.out.println(netName + "," + lofi1 + "," + logfi2 + "," + logfo1 + ","
                 // + pi + "\n");
 
                 csvFileWriter.write(netName + "," + lofi1 + "," + logfi2 + "," + logfo1 + "," + logfo2 + "," + pi + ","
-                        + inFF1 + "," + inFF2 + "," + inMUX1 + "," + inMUX2 + "," + inloop1 + "\n");
+                        + inFF1 + "," + inFF2 + "," + inMUX1 + "," + inMUX2 + "," + inloop2 + "\n");
             }
             System.out.println("Features added to file succesfully!");
         } catch (IOException e) {

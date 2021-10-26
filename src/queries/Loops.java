@@ -20,18 +20,15 @@ public class Loops {
 
     /** Uses DFS to find minimum distance to any primary input from "net". */
     int dfs(Net net, int x) {
-        System.out.println(net.getName());
         visited.add(net.getName());
         SubModule inputModule = net.getInput();
         if (inputModule == null || x > level_)
             return 0;
         for (Net inputNet : inputModule.getInputs()) {
-            if (!visited.contains(inputNet.getName())) 
+            if (!visited.contains(inputNet.getName()))
                 loops += dfs(inputNet, x + 1);
-            else if (x == level_) {
-                System.out.println(net.getName());
+            else if (x == level_)
                 loops++;
-            }
         }
         return loops;
     }
