@@ -5,16 +5,10 @@ import java.util.Set;
 
 import components.Net;
 import components.SubModule;
-import graphs.Graph;
 
 public class PrimaryInput {
 
-    Graph graph;
-    Set<String> visited;
-
-    PrimaryInput() {
-        graph = Graph.getInstance();
-    }
+    private Set<String> visited;
 
     /** Initialize the "visited" set. */
     void init() {

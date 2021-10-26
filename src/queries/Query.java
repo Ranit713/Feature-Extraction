@@ -4,11 +4,12 @@ import components.Net;
 
 public class Query {
 
-    LogicFanIn logicFanIn;
-    LogicFanOut logicFanOut;
-    PrimaryInput primaryInputObj;
-    FlipFlops ff;
-    Multiplexers mux;
+    private LogicFanIn logicFanIn;
+    private LogicFanOut logicFanOut;
+    private PrimaryInput primaryInputObj;
+    private FlipFlops ff;
+    private Multiplexers mux;
+    private Loops loop;
 
     public Query() {
         logicFanIn = new LogicFanIn();
@@ -16,6 +17,7 @@ public class Query {
         primaryInputObj = new PrimaryInput();
         ff = new FlipFlops();
         mux = new Multiplexers();
+        loop = new Loops();
     }
 
     public int fanIn(Net net, int level) {
@@ -36,5 +38,9 @@ public class Query {
 
     public int inMultiplexer(Net net, int level) {
         return mux.inMUX(net, level);
+    }
+
+    public int inloopUptoLevel(Net net, int level) {
+        return loop.inLoopx(net, level);
     }
 }

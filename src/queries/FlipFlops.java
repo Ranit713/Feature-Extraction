@@ -2,15 +2,8 @@ package queries;
 
 import components.Net;
 import components.SubModule;
-import graphs.Graph;
 
 public class FlipFlops {
-
-    Graph graph;
-
-    FlipFlops() {
-        graph = Graph.getInstance();
-    }
 
     int inFlipFlops(Net net, int n) {
         SubModule module = net.getInput(); // sub-module object at input side of net

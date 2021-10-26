@@ -10,9 +10,9 @@ import components.SubModule;
 
 public class Graph implements ModuleList, NetList {
 
-    Map<String, Net> nets; // list of nets
-    Map<Net, Net> assignments; // list of assignments
-    Map<String, SubModule> modules; // list of sub-modules
+    private Map<String, Net> nets; // list of nets
+    private Map<Net, Net> assignments; // list of assignments
+    private Map<String, SubModule> modules; // list of sub-modules
     private static Graph singleInstance = null;
 
     private Graph() {

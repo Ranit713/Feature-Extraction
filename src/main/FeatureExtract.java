@@ -11,8 +11,8 @@ import queries.Query;
 
 public class FeatureExtract {
 
-    Graph graph;
-    Query query;
+    private Graph graph;
+    private Query query;
 
     public FeatureExtract() {
         graph = Graph.getInstance();
@@ -36,7 +36,7 @@ public class FeatureExtract {
         String vfileName = verilogFile.substring(0, verilogFile.indexOf(".")) + ".csv"; // csv file using the original
                                                                                         // file name
         try (FileWriter csvFileWriter = new FileWriter("../features/" + vfileName)) {
-            csvFileWriter.write("Netlist,LOFi1,LOFi2,LOFo1,LOFo2,PI,inFF1,inFF2,inMUX1,inMUX2\n");
+            csvFileWriter.write("Netlist,LOFi1,LOFi2,LOFo1,LOFo2,PI,inFF1,inFF2,inMUX1,inMUX2,inLoop1\n");
 
             // Queries run below.
             for (Net net : graph.getAllNets()) {
@@ -51,12 +51,13 @@ public class FeatureExtract {
                 int inFF2 = query.inFlipFlop(net, 2);
                 int inMUX1 = query.inMultiplexer(net, 1);
                 int inMUX2 = query.inMultiplexer(net, 2);
+                int inloop1 = query.inloopUptoLevel(net, 1);
 
                 // System.out.println(netName + "," + lofi1 + "," + logfi2 + "," + logfo1 + ","
                 // + pi + "\n");
 
                 csvFileWriter.write(netName + "," + lofi1 + "," + logfi2 + "," + logfo1 + "," + logfo2 + "," + pi + ","
-                        + inFF1 + "," + inFF2 + "," + inMUX1 + "," + inMUX2 + "\n");
+                        + inFF1 + "," + inFF2 + "," + inMUX1 + "," + inMUX2 + "," + inloop1 + "\n");
             }
             System.out.println("Features added to file succesfully!");
         } catch (IOException e) {
