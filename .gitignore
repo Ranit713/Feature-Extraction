@@ -1,1 +1,5 @@
-*.class
+features/
+Debug.java
+runDebug.sh
+example.v
+loop.v

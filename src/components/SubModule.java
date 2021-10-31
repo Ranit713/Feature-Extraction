@@ -1,7 +1,9 @@
 package components;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class SubModule {
 
@@ -43,13 +45,13 @@ public class SubModule {
     }
 
     /** Returns names of input nets to the module. */
-    public List<Net> getInputs() {
-        return inputs;
+    public Set<Net> getInputs() {
+        return new HashSet<>(inputs);
     }
 
     /** Returns names of output nets from the module. */
-    public List<Net> getOutputs() {
-        return outputs;
+    public Set<Net> getOutputs() {
+        return new HashSet<>(outputs);
     }
 
     /* Returns fan in value of current module. */

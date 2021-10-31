@@ -1,15 +1,20 @@
-module s38584 ( CK, g100, g10122, g10306);
+module example ( sys_clk, pi1, pi2, pi3, po1, po2  );
 
-input CK, g100, g11;
-output g10122, g10306, g10500, g10527;
-wire  g34956, g5057, g33046;
+input sys_clk, pi1, pi2, pi3;
+output po1, po2;
+wire  n1, n2, n3, n4, n5, n6, n7, n8, n9, n10, n11, n12, n13;
 
-assign g34839 = g34956;
-assign g29217 = g21270;
-assign g29220 = g21245;
-LSDNENX1 U5116 ( .D(g34783), .ENB(n2730), .Q(g34221) );
-LSDNENX1 U5126 ( .D(n4836), .ENB(n4896), .Q(n4895) );
-SDFFX1 DFF_5_Q_reg ( .D(g22026), .SI(g2883), .SE(test_se), .CLK(CK), .Q(
-        g2888), .QN() );
+assign p1 = n1;
+assign p1 = n3;
+assign p1 = n2;
+assign p1 = n5;
+assign po1 = n10;
+
+AND2X1 A ( .IN1(n1), .IN2(n2), .Q(n7) );
+AND2X1 D ( .IN1(n9), .IN2(n9), .Q(n10) );
+OR2X2 C ( .IN1(n7), .IN2(n8), .Q(n9) );
+XOR2X2 B ( .IN1(n5), .IN2(n6), .Q(n8) );
+DFFARX1 FFA ( .D(n3), .CLK(sys_clk), .RSTB(n4), .Q(n6), .QN() );
+DFFARX1 FFB ( .D(n10), .CLK(sys_clk), .RSTB(n11), .Q(n12), .QN(n13) );
 
 endmodule

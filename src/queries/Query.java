@@ -41,6 +41,9 @@ public class Query {
     }
 
     public int inloopUptoLevel(Net net, int level) {
-        return loop.inLoopx(net, level);
+        int loops = 0;
+        for (int i = 1; i <= level; i++)
+            loops += loop.inLoopx(net, i);
+        return loops;
     }
 }

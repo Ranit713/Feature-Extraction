@@ -1,6 +1,6 @@
 package queries;
 
-import java.util.List;
+import java.util.Set;
 
 import components.Net;
 import components.SubModule;
@@ -8,7 +8,7 @@ import components.SubModule;
 public class LogicFanOut {
 
     int fanOutUptoLevel(Net net, int n) {
-        List<SubModule> modules = net.getOutputs(); // sub-module objects at output side of net
+        Set<SubModule> modules = net.getOutputs(); // sub-module objects at output side of net
         int fanOut = 0;
         for (SubModule module : modules) {
             if (n == 1)

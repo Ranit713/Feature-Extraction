@@ -1,40 +1,24 @@
 package queries;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import components.Net;
 import components.SubModule;
 
 public class Loops {
 
-    private int loops;
-    private Set<String> visited;
-    private int level_;
-
-    void init(int level) {
-        loops = 0;
-        level_ = level;
-        visited = new HashSet<>();
-    }
-
     /** Uses DFS to find minimum distance to any primary input from "net". */
-    int dfs(Net net, int x) {
-        visited.add(net.getName());
-        SubModule inputModule = net.getInput();
-        if (inputModule == null || x > level_)
+    int dfs(Net curr, Net target, int n) {
+        if (n == 0)
+            return curr == target ? 1 : 0;
+        SubModule inputModule = curr.getInput();
+        if (inputModule == null)
             return 0;
-        for (Net inputNet : inputModule.getInputs()) {
-            if (!visited.contains(inputNet.getName()))
-                loops += dfs(inputNet, x + 1);
-            else if (x == level_)
-                loops++;
-        }
+        int loops = 0;
+        for (Net net : inputModule.getInputs())
+            loops += dfs(net, target, n - 1);
         return loops;
     }
 
     int inLoopx(Net net, int level) {
-        init(level);
-        return dfs(net, 0);
+        return dfs(net, net, level);
     }
 }

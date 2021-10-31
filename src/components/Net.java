@@ -1,7 +1,9 @@
 package components;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Net {
 
@@ -48,9 +50,9 @@ public class Net {
         return inputModule;
     }
 
-    /** Returns list of the modules names current net is going into. */
-    public List<SubModule> getOutputs() {
-        return outputs;
+    /** Returns set of the modules names current net is going into. */
+    public Set<SubModule> getOutputs() {
+        return new HashSet<>(outputs);
     }
 
     /** Returns true if current net is a wire. */
