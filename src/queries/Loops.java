@@ -5,7 +5,7 @@ import components.SubModule;
 
 public class Loops {
 
-    /** Uses DFS to find minimum distance to any primary input from "net". */
+    /** Uses DFS to find cycle of size n involving target net. */
     int dfs(Net curr, Net target, int n) {
         if (n == 0)
             return curr == target ? 1 : 0;

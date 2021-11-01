@@ -1,4 +1,4 @@
 cd src
-javac ./main/FeatureExtract.java
-java main.FeatureExtract
+javac ./main/FeatureExtraction.java
+java main.FeatureExtraction
 find . -name "*.class" -type f -delete
