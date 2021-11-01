@@ -10,6 +10,7 @@ public class Query {
     private FlipFlops ff;
     private Multiplexers mux;
     private Loops loop;
+    private Connectivity connectivity;
 
     public Query() {
         logicFanIn = new LogicFanIn();
@@ -18,6 +19,7 @@ public class Query {
         ff = new FlipFlops();
         mux = new Multiplexers();
         loop = new Loops();
+        connectivity = new Connectivity();
     }
 
     public int fanIn(Net net, int level) {
@@ -45,5 +47,9 @@ public class Query {
         for (int i = 1; i <= level; i++)
             loops += loop.inLoopx(net, i);
         return loops;
+    }
+
+    public int connectivity(Net net) {
+        return connectivity.getValue(net);
     }
 }

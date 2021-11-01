@@ -36,7 +36,7 @@ public class FeatureExtract {
         String vfileName = verilogFile.substring(0, verilogFile.indexOf(".")) + ".csv"; // csv file using the original
                                                                                         // file name
         try (FileWriter csvFileWriter = new FileWriter("../features/" + vfileName)) {
-            csvFileWriter.write("Netlist,LOFi1,LOFi2,LOFo1,LOFo2,PI,inFF1,inFF2,inMUX1,inMUX2,inLoop\n");
+            csvFileWriter.write("Netlist,LOFi1,LOFi2,LOFo1,LOFo2,PI,inFF1,inFF2,inMUX1,inMUX2,inLoop,Connectitvity\n");
 
             // Queries run below.
             for (Net net : graph.getAllNets()) {
@@ -52,12 +52,14 @@ public class FeatureExtract {
                 int inMUX1 = query.inMultiplexer(net, 1);
                 int inMUX2 = query.inMultiplexer(net, 2);
                 int inloop = query.inloopUptoLevel(net, 3);
+                int connectitvity = query.connectivity(net);
 
                 // System.out.println(netName + "," + lofi1 + "," + logfi2 + "," + logfo1 + ","
                 // + pi + "\n");
 
                 csvFileWriter.write(netName + "," + lofi1 + "," + logfi2 + "," + logfo1 + "," + logfo2 + "," + pi + ","
-                        + inFF1 + "," + inFF2 + "," + inMUX1 + "," + inMUX2 + "," + inloop + "\n");
+                        + inFF1 + "," + inFF2 + "," + inMUX1 + "," + inMUX2 + "," + inloop + "," + connectitvity
+                        + "\n");
             }
             System.out.println("Features added to file succesfully!");
         } catch (IOException e) {
@@ -67,7 +69,7 @@ public class FeatureExtract {
 
     public static void main(String[] args) {
         FeatureExtract featureExtract = new FeatureExtract();
-        String verilogFile = "wb_conmax-T100.v";
+        String verilogFile = "RS232-T1000.v";
         File file = featureExtract.openFile(verilogFile);
         featureExtract.createGraph(file);
         featureExtract.runQueries(verilogFile);
