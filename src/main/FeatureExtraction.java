@@ -12,20 +12,14 @@ public class FeatureExtraction {
         csvOper = new CSVOperations();
     }
 
-    private void run(String verilogFile) {
-        parser.run(verilogFile);
-        csvOper.write(verilogFile);
-    }
-
-    private void allFiles() {
-        File folder = new File("../resources/");
-        File[] listOfFiles = folder.listFiles();
-        for (File file : listOfFiles)
-            run(file.getName());
+    private void create(String verilogFile) {
+        File vfile = new File(verilogFile);
+        parser.createGraph(vfile);
+        csvOper.write(vfile);
     }
 
     public static void main(String[] args) {
         FeatureExtraction featureExtract = new FeatureExtraction();
-        featureExtract.allFiles();
+        featureExtract.create(args[0]);
     }
 }

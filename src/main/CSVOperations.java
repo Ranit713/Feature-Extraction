@@ -1,5 +1,6 @@
 package main;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
@@ -21,8 +22,8 @@ class CSVOperations {
     }
 
     /** Stores feature values in a csv file. */
-    void write(String vFileName) {
-        String CSVFileName = getFileName(vFileName).concat(".csv");
+    void write(File vfile) {
+        String CSVFileName = getFileName(vfile.getName()).concat(".csv");
 
         try (Writer CSVWriter = new FileWriter("../features/" + CSVFileName)) {
 
@@ -49,7 +50,7 @@ class CSVOperations {
                 tuple.append(System.getProperty("line.separator"));
                 CSVWriter.write(tuple.toString());
             }
-            System.out.println(vFileName + ": Features added to file succesfully!");
+            System.out.println(vfile.getName() + ": Features added to file succesfully!");
         } catch (IOException e) {
             e.getMessage();
         }
