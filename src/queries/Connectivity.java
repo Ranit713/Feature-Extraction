@@ -5,6 +5,7 @@ import components.Net;
 public class Connectivity {
     
     int getValue(Net net) {
-        return net.getOutputs().size();
+        // Number of outputs and an input.
+        return net.getOutputs().size() + 1;
     }
 }
