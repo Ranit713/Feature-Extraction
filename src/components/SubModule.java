@@ -44,6 +44,10 @@ public class SubModule {
         return type.equals("MUX");
     }
 
+    public String getType() {
+        return type;
+    }
+
     /** Returns names of input nets to the module. */
     public Set<Net> getInputs() {
         return new HashSet<>(inputs);
