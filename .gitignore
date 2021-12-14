@@ -1,5 +1,7 @@
 features/
+trojans/
 Debug.java
+CSVTrojan.java
 runDebug.sh
 example.v
 loop.v

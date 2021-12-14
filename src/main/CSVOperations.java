@@ -42,11 +42,13 @@ class CSVOperations {
                 // Store respective net features.
                 Iterator<Integer> iterator = entry.getValue().iterator();
                 while (iterator.hasNext()) {
-                    tuple.append(iterator.next());
+                    Integer num = iterator.next();
+                    if (num != Integer.MAX_VALUE)
+                        tuple.append(num);
                     if (iterator.hasNext())
                         tuple.append(",");
                 }
-                
+
                 tuple.append(System.getProperty("line.separator"));
                 CSVWriter.write(tuple.toString());
             }

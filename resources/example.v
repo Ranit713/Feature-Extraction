@@ -1,14 +1,15 @@
 module example ( sys_clk, pi1, pi2, pi3, po1, po2  );
 
-input sys_clk, pi1, pi2, pi3;
+input sys_clk, pi1, pi2;
 output po1, po2;
 wire  n1, n2, n3, n4, n5, n6, n7, n8, n9, n10, n11, n12, n13;
 
-assign p1 = n1;
-assign p1 = n3;
-assign p1 = n2;
-assign p1 = n5;
+assign pi1 = n1;
+assign pi1 = n3;
+assign pi2 = n2;
+assign pi2 = n5;
 assign po1 = n10;
+assign po2 = n12;
 
 AND2X1 A ( .IN1(n1), .IN2(n2), .Q(n7) );
 AND2X1 D ( .IN1(n9), .IN2(n9), .Q(n10) );

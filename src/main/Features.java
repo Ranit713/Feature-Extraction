@@ -32,6 +32,7 @@ class Features {
     private int logfo5;
 
     private int pi;
+    private int po;
 
     private int inFF1;
     private int inFF2;
@@ -57,7 +58,7 @@ class Features {
         HEADER.append("Netlist,");
         HEADER.append("LOFi1,LOFi2,LOFi3,LOFi4,LOFi5,");
         HEADER.append("LOFo1,LOFo2,LOFo3,LOFo4,LOFo5,");
-        HEADER.append("PI,");
+        HEADER.append("PI,PO,");
         HEADER.append("inFF1,inFF2,inFF3,inFF4,inFF5,");
         HEADER.append("inMUX1,inMUX2,inMUX3,inMUX4,inMUX5,");
         HEADER.append("inLoop,Connectivity\n");
@@ -79,6 +80,7 @@ class Features {
         logfo5 = query.fanOut(net, 5);
 
         pi = query.primaryInput(net);
+        po = query.primaryOutput(net);
 
         inFF1 = query.inFlipFlop(net, 1);
         inFF2 = query.inFlipFlop(net, 2);
@@ -112,6 +114,7 @@ class Features {
         features.add(logfo5);
 
         features.add(pi);
+        features.add(po);
 
         features.add(inFF1);
         features.add(inFF2);

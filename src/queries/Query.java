@@ -6,7 +6,7 @@ public class Query {
 
     private LogicFanIn logicFanIn;
     private LogicFanOut logicFanOut;
-    private PrimaryInput primaryInputObj;
+    private PrimaryIO primaryIO;
     private FlipFlops ff;
     private Multiplexers mux;
     private Loops loop;
@@ -15,7 +15,7 @@ public class Query {
     public Query() {
         logicFanIn = new LogicFanIn();
         logicFanOut = new LogicFanOut();
-        primaryInputObj = new PrimaryInput();
+        primaryIO = new PrimaryIO();
         ff = new FlipFlops();
         mux = new Multiplexers();
         loop = new Loops();
@@ -31,7 +31,11 @@ public class Query {
     }
 
     public int primaryInput(Net net) {
-        return primaryInputObj.minimumPI(net);
+        return primaryIO.minimumPI(net);
+    }
+
+    public int primaryOutput(Net net) {
+        return primaryIO.minimumPO(net);
     }
 
     public int inFlipFlop(Net net, int level) {

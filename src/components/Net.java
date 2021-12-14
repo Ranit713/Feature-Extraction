@@ -10,7 +10,7 @@ public class Net {
     private String netName;
     private SubModule inputModule;
     private List<SubModule> outputs;
-    private List<String> assignedTo;
+    private List<Net> assignedTo;
     private char netType;
 
     public Net(String name) {
@@ -61,20 +61,30 @@ public class Net {
     }
 
     /** Returns true if current net is a primary input. */
-    public boolean isInput() {
+    public boolean isPI() {
         return netType == 'i';
     }
 
     /** Returns true if current net is a primary output. */
-    public boolean isOutput() {
+    public boolean isPO() {
         return netType == 'o';
     }
 
-    public void assignTo(String netName) {
-        assignedTo.add(netName);
+    /** Performs assignment operation for the current net. */
+    public void assignTo(Net net) {
+        assignedTo.add(net);
     }
 
-    public List<String> assignedTo() {
+    /** Returns true if current net is assigned to any primary output. */
+    public boolean assignedToPO() {
+        for (Net net: assignedTo)
+            if (net.isPO())
+                return true;
+        return false;
+    }
+
+    /** Returns list of nets the current net object is assigned to. */
+    public List<Net> assignedTo() {
         return assignedTo;
     }
 }

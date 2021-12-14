@@ -35,8 +35,10 @@ public class CircuitryToken {
      */
     private void assign(String assignment) {
         String[] netNames = assignment.split("\\s*=\\s*");
-        Net net = graph.getNet(netNames[1]);
-        net.assignTo(netNames[0]);
+        Net net0 = graph.getNet(netNames[0]);
+        Net net1 = graph.getNet(netNames[1]);
+        net0.assignTo(net1);
+        net1.assignTo(net0);
     }
 
     /**
