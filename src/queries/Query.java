@@ -38,8 +38,9 @@ public class Query {
         return primaryIO.minimumPO(net);
     }
 
-    public int inFlipFlop(Net net, int level) {
-        return ff.inFlipFlops(net, level);
+    /** Calculates flip-flops at a given level. */
+    public int inOutFlipFlop(Net net, int level, boolean inOut) {
+        return inOut ? ff.inFlipFlops(net, level) : ff.outFlipFlops(net, level);
     }
 
     public int inMultiplexer(Net net, int level) {

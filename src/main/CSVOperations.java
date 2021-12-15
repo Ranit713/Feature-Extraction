@@ -13,7 +13,7 @@ class CSVOperations {
     private Features features;
 
     CSVOperations() {
-        features = new Features(5);
+        features = new Features();
     }
 
     /* Returns file name without extension. */
@@ -42,7 +42,7 @@ class CSVOperations {
                 // Store respective net features.
                 Iterator<Integer> iterator = entry.getValue().iterator();
                 while (iterator.hasNext()) {
-                    Integer num = iterator.next();
+                    int num = iterator.next();
                     if (num != Integer.MAX_VALUE)
                         tuple.append(num);
                     if (iterator.hasNext())
