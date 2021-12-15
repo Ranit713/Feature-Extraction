@@ -13,7 +13,7 @@ class CSVOperations {
     private Features features;
 
     CSVOperations() {
-        features = new Features();
+        features = new Features(5);
     }
 
     /* Returns file name without extension. */
