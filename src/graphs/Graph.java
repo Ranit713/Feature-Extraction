@@ -31,7 +31,7 @@ public class Graph implements ModuleList, NetList {
      * Net list functionalities listed below
      */
     public void add(Net net) {
-        nets.putIfAbsent(net.getName(), net);
+        nets.put(net.getName(), net);
     }
 
     /** Retrieve net object using net name. */

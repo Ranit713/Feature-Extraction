@@ -76,6 +76,14 @@ public class Net {
     }
 
     /** Returns true if current net is assigned to any primary output. */
+    public boolean assignedToPI() {
+        for (Net net: assignedTo)
+            if (net.isPI())
+                return true;
+        return false;
+    }
+
+    /** Returns true if current net is assigned to any primary output. */
     public boolean assignedToPO() {
         for (Net net: assignedTo)
             if (net.isPO())

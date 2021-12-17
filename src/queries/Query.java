@@ -4,8 +4,7 @@ import components.Net;
 
 public class Query {
 
-    private LogicFanIn logicFanIn;
-    private LogicFanOut logicFanOut;
+    private LogicFanIO logicFanIO;
     private PrimaryIO primaryIO;
     private FlipFlops ff;
     private Multiplexers mux;
@@ -13,8 +12,7 @@ public class Query {
     private Connectivity connectivity;
 
     public Query() {
-        logicFanIn = new LogicFanIn();
-        logicFanOut = new LogicFanOut();
+        logicFanIO = new LogicFanIO();
         primaryIO = new PrimaryIO();
         ff = new FlipFlops();
         mux = new Multiplexers();
@@ -22,29 +20,22 @@ public class Query {
         connectivity = new Connectivity();
     }
 
-    public int fanIn(Net net, int level) {
-        return logicFanIn.fanInUptoLevel(net, level);
+    public int fanInOut(Net net, int level, boolean inOut) {
+        return inOut ? logicFanIO.fanIn(net, level) : logicFanIO.fanOut(net, level);
     }
 
-    public int fanOut(Net net, int level) {
-        return logicFanOut.fanOutUptoLevel(net, level);
+    public int primaryInOut(Net net, boolean inOut) {
+        return inOut ? primaryIO.minimumPI(net) : primaryIO.minimumPO(net);
     }
 
-    public int primaryInput(Net net) {
-        return primaryIO.minimumPI(net);
-    }
-
-    public int primaryOutput(Net net) {
-        return primaryIO.minimumPO(net);
-    }
-
-    /** Calculates flip-flops at a given level. */
+    /** Calculates number of paths to all flip-flops at a given level. */
     public int inOutFlipFlop(Net net, int level, boolean inOut) {
-        return inOut ? ff.inFlipFlops(net, level) : ff.outFlipFlops(net, level);
+        return inOut ? ff.inFFPaths(net, level) : ff.outFFPaths(net, level);
     }
 
-    public int inMultiplexer(Net net, int level) {
-        return mux.inMUX(net, level);
+    /** Calculates number of paths to all multiplexers at a given level. */
+    public int inOutMultiplexer(Net net, int level, boolean inOut) {
+        return inOut ? mux.inMUXPaths(net, level) : mux.outMUXPaths(net, level);
     }
 
     public int inloopUptoLevel(Net net, int level) {

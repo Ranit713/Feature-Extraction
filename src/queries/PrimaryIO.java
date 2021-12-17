@@ -18,14 +18,21 @@ public class PrimaryIO {
     /** Uses DFS to find minimum distance to any primary input from "net". */
     int dfsPI(Net net, int pi) {
         visited.add(net.getName());
+        if (net.isPI() || net.assignedToPI())
+            return pi;
+
         int min = Integer.MAX_VALUE; // stores minimum distance to any primary input
         SubModule inputModule = net.getInput(); // sub-module object at input side of net
-        if (net.isPI() || inputModule == null) // if input of a wire is null, it means it is connected to a primary
-                                               // input
-            return pi;
-        for (Net inputNet : inputModule.getInputs())
-            if (!visited.contains(inputNet.getName()))
-                min = Math.min(dfsPI(inputNet, pi + 1), min);
+
+        if (net.isPO()) {
+            for (Net inputNet : net.assignedTo())
+                min = Math.min(dfsPI(inputNet, pi), min);
+        }
+        if (inputModule != null) {
+            for (Net inputNet : inputModule.getInputs())
+                if (!visited.contains(inputNet.getName()))
+                    min = Math.min(dfsPI(inputNet, pi + 1), min);
+        }
         return min;
     }
 
@@ -38,17 +45,14 @@ public class PrimaryIO {
         int min = Integer.MAX_VALUE; // stores minimum distance to any primary input
 
         // if net has no sub-module outputs, there must be an assignment to it.
-        if (!net.getOutputs().isEmpty()) {
-            for (SubModule outputModule : net.getOutputs()) {
-                if (outputModule == null)
-                    return po;
-                for (Net outputNet : outputModule.getOutputs())
-                    if (!visited.contains(outputNet.getName()))
-                        min = Math.min(dfsPO(outputNet, po + 1), min);
-            }
-        } else {
+        if (net.isPI()) {
             for (Net wire : net.assignedTo())
                 min = Math.min(dfsPO(wire, po), min);
+        }
+        for (SubModule outputModule : net.getOutputs()) {
+            for (Net outputNet : outputModule.getOutputs())
+                if (!visited.contains(outputNet.getName()))
+                    min = Math.min(dfsPO(outputNet, po + 1), min);
         }
         return min;
     }

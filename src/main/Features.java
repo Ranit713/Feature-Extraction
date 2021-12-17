@@ -52,6 +52,12 @@ class Features {
     private int inMUX4;
     private int inMUX5;
 
+    private int outMUX1;
+    private int outMUX2;
+    private int outMUX3;
+    private int outMUX4;
+    private int outMUX5;
+
     private int inloop;
 
     private int connectitvity;
@@ -68,26 +74,27 @@ class Features {
         HEADER.append("inFF1,inFF2,inFF3,inFF4,inFF5,");
         HEADER.append("outFF1,outFF2,outFF3,outFF4,outFF5,");
         HEADER.append("inMUX1,inMUX2,inMUX3,inMUX4,inMUX5,");
+        HEADER.append("outMUX1,outMUX2,outMUX3,outMUX4,outMUX5,");
         HEADER.append("inLoop,Connectivity\n");
     }
 
     private void setData(Net net) {
         netName = net.getName();
 
-        lofi1 = query.fanIn(net, 1);
-        lofi2 = query.fanIn(net, 2);
-        lofi3 = query.fanIn(net, 3);
-        lofi4 = query.fanIn(net, 4);
-        lofi5 = query.fanIn(net, 5);
+        lofi1 = query.fanInOut(net, 1, true);
+        lofi2 = query.fanInOut(net, 2, true);
+        lofi3 = query.fanInOut(net, 3, true);
+        lofi4 = query.fanInOut(net, 4, true);
+        lofi5 = query.fanInOut(net, 5, true);
 
-        logfo1 = query.fanOut(net, 1);
-        logfo2 = query.fanOut(net, 2);
-        logfo3 = query.fanOut(net, 3);
-        logfo4 = query.fanOut(net, 4);
-        logfo5 = query.fanOut(net, 5);
+        logfo1 = query.fanInOut(net, 1, false);
+        logfo2 = query.fanInOut(net, 2, false);
+        logfo3 = query.fanInOut(net, 3, false);
+        logfo4 = query.fanInOut(net, 4, false);
+        logfo5 = query.fanInOut(net, 5, false);
 
-        pi = query.primaryInput(net);
-        po = query.primaryOutput(net);
+        pi = query.primaryInOut(net, true);
+        po = query.primaryInOut(net, false);
 
         inFF1 = query.inOutFlipFlop(net, 1, true);
         inFF2 = query.inOutFlipFlop(net, 2, true);
@@ -101,11 +108,17 @@ class Features {
         outFF4 = query.inOutFlipFlop(net, 4, false);
         outFF5 = query.inOutFlipFlop(net, 5, false);
 
-        inMUX1 = query.inMultiplexer(net, 1);
-        inMUX2 = query.inMultiplexer(net, 2);
-        inMUX3 = query.inMultiplexer(net, 3);
-        inMUX4 = query.inMultiplexer(net, 4);
-        inMUX5 = query.inMultiplexer(net, 5);
+        inMUX1 = query.inOutMultiplexer(net, 1, true);
+        inMUX2 = query.inOutMultiplexer(net, 2, true);
+        inMUX3 = query.inOutMultiplexer(net, 3, true);
+        inMUX4 = query.inOutMultiplexer(net, 4, true);
+        inMUX5 = query.inOutMultiplexer(net, 5, true);
+
+        outMUX1 = query.inOutMultiplexer(net, 1, false);
+        outMUX2 = query.inOutMultiplexer(net, 2, false);
+        outMUX3 = query.inOutMultiplexer(net, 3, false);
+        outMUX4 = query.inOutMultiplexer(net, 4, false);
+        outMUX5 = query.inOutMultiplexer(net, 5, false);
 
         inloop = query.inloopUptoLevel(net, 5);
         connectitvity = query.connectivity(net);
@@ -146,6 +159,12 @@ class Features {
         features.add(inMUX3);
         features.add(inMUX4);
         features.add(inMUX5);
+
+        features.add(outMUX1);
+        features.add(outMUX2);
+        features.add(outMUX3);
+        features.add(outMUX4);
+        features.add(outMUX5);
 
         features.add(inloop);
 
